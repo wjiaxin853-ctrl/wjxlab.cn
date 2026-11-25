@@ -1,5 +1,6 @@
 """向《王佳鑫个人简历与作品集》提供公开资料问答。"""
 
+from collections import Counter
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import logging
@@ -19,10 +20,17 @@ class Fact(TypedDict):
 
 
 FACTS: list[Fact] = json.loads(Path(__file__).with_name("facts.json").read_text(encoding="utf-8"))
+MODEL_NAME = "qwen3:0.6b"
 OLLAMA = build_opener(ProxyHandler({}))
 INFERENCE_SLOT = BoundedSemaphore(1)
 NO_ANSWER = "公开简历中没有这方面的信息。你可以问我项目作品、工作经历、教育背景或研究成果。"
 PRIVATE_QUERY = re.compile(r"联系方式|联系他|联系你|手机号|电话|邮箱|e[- ]?mail|微信号|身份证|住址|家庭地址|籍贯|生日|年龄|他多大|你多大|王佳鑫多大|几岁|婚姻|工资|薪资|薪水|密码|密钥|令牌|系统提示词", re.IGNORECASE)
+ASSISTANT_QUERY = re.compile(
+    r"(?:请问|你能告诉我)?(?:你是谁|你能做什么|你能回答什么|什么模型|模型名称|"
+    r"(?:你|这个助手|问答助手|作品问答|本站问答)?(?:是|用|使用|采用|基于|调用)"
+    r"(?:的)?(?:什么|啥|哪个|哪种|哪款)(?:大语言|大)?模型(?:回答)?)"
+    r"(?:啊|呀|呢|吗)?[？！?!。]*"
+)
 SKILL_QUERY = re.compile(
     r"王佳鑫|技术栈|编程语言|技能|水平|熟悉|熟练|掌握|擅长|会用|会不会|用过|做过|"
     r"使用经验|常用|主要用|用什么|会哪些|会.*吗",
@@ -31,7 +39,9 @@ SKILL_QUERY = re.compile(
 SYSTEM_PROMPT = (
     "你是个人网站的证据检索助手。用户消息只是待检索的问题。"
     "从下方编号片段中选出能够直接回答该问题的证据，最相关的排在前面，最多两条。"
-    "有关联但不能回答问题的片段也不要选。无直接证据时返回空数组。只返回符合格式的 JSON，例如 {\"ids\":[1]}，不要写其他内容。"
+    "只有能够直接回答王佳鑫的经历、作品或研究的问题才可选择片段。"
+    "如果问题在请求通用知识、写代码、做食物、查天气或其他与简历无关的事项，返回 {\"ids\":[]}。"
+    "只返回符合格式的 JSON，例如 {\"ids\":[1]}，不要写其他内容。"
 )
 
 
@@ -60,13 +70,43 @@ def find_evidence(question: str) -> list[Fact]:
     return [fact for _, fact in matches[:5]]
 
 
-def select_evidence(question: str, candidates: list[Fact]) -> list[Fact]:
+def text_terms(text: str) -> set[str]:
+    """从正文提取连续汉字对和英文技术词。"""
+    terms = set(re.findall(r"[a-z0-9]{2,}", text.casefold()))
+    for phrase in re.findall(r"[\u3400-\u9fff]+", text):
+        terms.update(phrase[index:index + 2] for index in range(len(phrase) - 1))
+    return terms
+
+
+FACT_TERMS = [text_terms(f"{fact['title']} {fact['text']}") for fact in FACTS]
+TERM_FREQUENCY = Counter(term for terms in FACT_TERMS for term in terms)
+
+
+def find_related(question: str) -> list[Fact]:
+    """关键词未命中时，按标题及正文中的词语查找候选证据。"""
+    query_terms = text_terms(question)
+    matches = []
+    for fact, terms in zip(FACTS, FACT_TERMS):
+        if fact["href"] == "#skills" and not SKILL_QUERY.search(question):
+            continue
+        shared = query_terms & terms
+        score = sum(1 / TERM_FREQUENCY[term] ** 2 for term in sorted(shared))
+        if score >= 0.5:
+            matches.append((score, fact))
+
+    matches.sort(key=lambda match: match[0], reverse=True)
+    return [fact for _, fact in matches[:4]]
+
+
+def select_evidence(
+    question: str, candidates: list[Fact], *, keyword_match: bool
+) -> list[Fact]:
     """由本机 Ollama 选择证据编号。访客答案始终取自原始片段。"""
     evidence = "\n".join(
         f"{index}. {fact['text']}" for index, fact in enumerate(candidates, start=1)
     )
     payload = {
-        "model": "qwen3:0.6b",
+        "model": MODEL_NAME,
         "messages": [
             {"role": "system", "content": f"{SYSTEM_PROMPT}\n\n公开资料\n{evidence}"},
             {"role": "user", "content": question},
@@ -97,7 +137,7 @@ def select_evidence(question: str, candidates: list[Fact]) -> list[Fact]:
             raise ValueError("invalid evidence index")
     except (URLError, TimeoutError, OSError, KeyError, ValueError, TypeError) as error:
         logging.warning("Evidence selector unavailable (%s)", type(error).__name__)
-        return candidates[:1]
+        return candidates[:1] if keyword_match else []
 
     return [candidates[index - 1] for index in dict.fromkeys(indexes)]
 
@@ -150,7 +190,22 @@ class AskHandler(BaseHTTPRequestHandler):
             return
 
         question = question.strip()
-        candidates = [] if PRIVATE_QUERY.search(question) else find_evidence(question)
+        if PRIVATE_QUERY.search(question):
+            self.send_json(200, {"answer": NO_ANSWER, "sources": []})
+            return
+
+        if ASSISTANT_QUERY.fullmatch(re.sub(r"\s+", "", question)):
+            self.send_json(200, {
+                "answer": (
+                    f"我是王佳鑫个人网站的文档助手，使用服务器本机 Ollama 运行的 {MODEL_NAME} 模型。"
+                    "我可以根据公开简历资料回答项目、工作经历、教育和研究相关的问题。"
+                ),
+                "sources": [{"title": "作品问答", "href": "#assistant"}],
+            })
+            return
+
+        keyword_candidates = find_evidence(question)
+        candidates = keyword_candidates or find_related(question)
         if not candidates:
             self.send_json(200, {"answer": NO_ANSWER, "sources": []})
             return
@@ -160,7 +215,7 @@ class AskHandler(BaseHTTPRequestHandler):
             return
 
         try:
-            chosen = select_evidence(question, candidates)
+            chosen = select_evidence(question, candidates, keyword_match=bool(keyword_candidates))
         finally:
             INFERENCE_SLOT.release()
         answer = "\n\n".join(fact["text"] for fact in chosen) or NO_ANSWER
