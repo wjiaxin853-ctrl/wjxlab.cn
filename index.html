@@ -7,7 +7,7 @@
   <meta name="description" content="王佳鑫的个人简历与项目作品集，聚焦计算机视觉、文档智能与边缘部署。">
   <title>王佳鑫 · AI 算法开发工程师</title>
   <link rel="icon" href="assets/mark.png?v=2" type="image/png">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <script src="site.js?v=2" defer></script>
   <script src="assistant.js?v=1" defer></script>
 </head>
@@ -50,73 +50,93 @@
       </div>
       <div class="project-grid">
         <article class="project featured" id="project-rebar">
-          <div class="project-image"><img src="assets/rebar.webp" alt="钢材计数平台对比原图和钢筋端面检测结果" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">国家级大学生创新创业训练计划</p>
-            <h3>工业钢筋实时计数</h3>
-            <p>用改进的 YOLOv8 检测钢筋端面，将模型部署到 PDA，支持仓储现场实时计数。</p>
-            <div class="project-facts"><span><strong>90%</strong> 计数准确率</span><span><strong>−30%</strong> 模型参数量</span></div>
-            <details>
-              <summary>查看技术细节</summary>
-              <p>搭建模块化 PyTorch 检测框架，用 GAN 生成端面图像补充数据，引入轻量高斯注意力和 SCConv，并改进损失函数处理端面粘连与尺寸差异。单帧推理低于 50 ms，仓储人工巡检效率提升 90%。</p>
-            </details>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-rebar" aria-labelledby="project-rebar-title">
+            <div class="project-image"><img src="assets/rebar.webp" alt="钢材计数平台对比原图和钢筋端面检测结果" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">国家级大学生创新创业训练计划</p>
+              <h3 id="project-rebar-title">工业钢筋实时计数</h3>
+              <p>用改进的 YOLOv8 检测钢筋端面，将模型部署到 PDA，支持仓储现场实时计数。</p>
+              <div class="project-facts"><span><strong>90%</strong> 计数准确率</span><span><strong>−30%</strong> 模型参数量</span></div>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
         <article class="project" id="project-easyppt">
-          <div class="project-image"><img src="assets/gesture.webp" alt="EasyPPT 演示用手部关键点控制幻灯片" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">手势交互</p>
-            <h3>EasyPPT</h3>
-            <p>用 MediaPipe 跟踪手部关键点，用 OpenCV 提供画面反馈，支持手势翻页、连续翻页和批注。项目于 2023 年入围百度飞桨全国大学生人工智能创意赛决赛。</p>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-easyppt" aria-labelledby="project-easyppt-title">
+            <div class="project-image"><img src="assets/easyppt-cover.jpg" alt="EasyPPT 演示用手部关键点控制幻灯片" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">手势交互</p>
+              <h3 id="project-easyppt-title">EasyPPT</h3>
+              <p>用 MediaPipe 跟踪手部关键点，用 OpenCV 提供画面反馈，支持手势翻页、连续翻页和批注。项目于 2023 年入围百度飞桨全国大学生人工智能创意赛决赛。</p>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
         <article class="project" id="project-digits">
-          <div class="project-image"><img src="assets/digits.webp" alt="手写数字 8 的原始画面与识别结果" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">实时识别</p>
-            <h3>手写数字检测与识别</h3>
-            <p>结合 YOLOv8 与 MNIST，从实时画面中定位手写数字并显示识别结果。</p>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-digits" aria-labelledby="project-digits-title">
+            <div class="project-image"><img src="assets/digits.webp" alt="手写数字 8 的原始画面与识别结果" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">实时识别</p>
+              <h3 id="project-digits-title">手写数字检测与识别</h3>
+              <p>结合 YOLOv8 与 MNIST，从实时画面中定位手写数字并显示识别结果。</p>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
         <article class="project" id="project-style-transfer">
-          <div class="project-image"><img src="assets/style-transfer.webp" alt="内容图、风格参考与生成结果" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">图像处理</p>
-            <h3>图像风格迁移</h3>
-            <p>用 VGG19 提取内容与风格特征，通过 L-BFGS 优化图像像素。</p>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-style-transfer" aria-labelledby="project-style-transfer-title">
+            <div class="project-image"><img src="assets/style-transfer.webp" alt="内容图、风格参考与生成结果" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">图像处理</p>
+              <h3 id="project-style-transfer-title">图像风格迁移</h3>
+              <p>用 VGG19 提取内容与风格特征，通过 L-BFGS 优化图像像素。</p>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
         <article class="project" id="project-movenet">
-          <div class="project-image"><img src="assets/movenet.webp" alt="人体关键点示意图和 LED 屏火柴人画面" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">姿态估计</p>
-            <h3>MoveNet 姿态可视化</h3>
-            <p>将人体关键点绘制为彩色火柴人，生成可在 LED 屏上展示的 GIF。</p>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-movenet" aria-labelledby="project-movenet-title">
+            <div class="project-image"><img src="assets/movenet.webp" alt="人体关键点示意图和 LED 屏火柴人画面" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">姿态估计</p>
+              <h3 id="project-movenet-title">MoveNet 姿态可视化</h3>
+              <p>将人体关键点绘制为彩色火柴人，生成可在 LED 屏上展示的 GIF。</p>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
         <article class="project" id="project-bamboo">
-          <div class="project-image"><img src="assets/bamboo.webp" alt="竹签原图和目标检测框对照" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">目标检测</p>
-            <h3>YOLOv8 竹签计数</h3>
-            <p>训练模型定位图像中的竹签，并统计检测数量。</p>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-bamboo" aria-labelledby="project-bamboo-title">
+            <div class="project-image"><img src="assets/bamboo.webp" alt="竹签原图和目标检测框对照" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">目标检测</p>
+              <h3 id="project-bamboo-title">YOLOv8 竹签计数</h3>
+              <p>训练模型定位图像中的竹签，并统计检测数量。</p>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
         <article class="project" id="project-blocks">
-          <div class="project-image"><img src="assets/blocks.webp" alt="摄像头识别手部关键点并拖动屏幕方块" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">手势交互</p>
-            <h3>手势搭积木</h3>
-            <p>用 OpenCV 处理摄像头画面，通过手部关键点选取、拖动屏幕方块，并以指间距离控制颜色。</p>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-blocks" aria-labelledby="project-blocks-title">
+            <div class="project-image"><img src="assets/blocks.webp" alt="摄像头识别手部关键点并拖动屏幕方块" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">手势交互</p>
+              <h3 id="project-blocks-title">手势搭积木</h3>
+              <p>用 OpenCV 处理摄像头画面，通过手部关键点选取、拖动屏幕方块，并以指间距离控制颜色。</p>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
         <article class="project" id="project-flow">
-          <div class="project-image"><img src="assets/optical-flow.webp" alt="人行区域的光流轨迹叠加效果" loading="lazy" width="1200" height="675"></div>
-          <div class="project-copy">
-            <p class="eyebrow">运动追踪</p>
-            <h3>行人光流估计</h3>
-            <p>用 OpenCV 提取首帧角点，通过 Lucas–Kanade 算法追踪并叠加运动轨迹。</p>
-          </div>
+          <a class="project-card-link" href="project-details.html#project-flow" aria-labelledby="project-flow-title">
+            <div class="project-image"><img src="assets/optical-flow.webp" alt="人行区域的光流轨迹叠加效果" loading="lazy" width="1200" height="675"></div>
+            <div class="project-copy">
+              <p class="eyebrow">运动追踪</p>
+              <h3 id="project-flow-title">行人光流估计</h3>
+              <p>用 OpenCV 提取首帧角点，通过 Lucas–Kanade 算法追踪并叠加运动轨迹。</p>
+              <span class="project-cta">查看项目详情</span>
+            </div>
+          </a>
         </article>
       </div>
     </section>

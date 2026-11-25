@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090615">
+  <meta name="description" content="了解王佳鑫八个计算机视觉作品的实现过程、演示画面与项目结果。">
+  <title>项目详情 · 王佳鑫 · WJX LAB</title>
+  <link rel="icon" href="assets/mark.png?v=2" type="image/png">
+  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="project-details.css">
+</head>
+<body class="detail-page" id="top">
+  <a class="skip" href="#detail-index">跳至作品索引</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="identity" href="index.html" aria-label="王佳鑫，首页">
+        <img src="assets/mark.png?v=2" alt="" width="34" height="34">
+        <span>WJX<span class="identity-slash"> / </span>LAB</span>
+      </a>
+      <nav aria-label="页面导航">
+        <a href="#detail-index">作品索引</a>
+        <a class="detail-back" href="index.html#projects"><span aria-hidden="true">←</span> 返回项目列表</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="detail-main">
+    <div class="wrap">
+      <div class="detail-index" id="detail-index" tabindex="-1">
+        <h1>项目详情</h1>
+        <nav aria-label="选择作品" class="detail-links">
+          <a href="#project-rebar">钢筋实时计数</a>
+          <a href="#project-easyppt">EasyPPT</a>
+          <a href="#project-digits">手写数字识别</a>
+          <a href="#project-style-transfer">图像风格迁移</a>
+          <a href="#project-movenet">MoveNet 姿态可视化</a>
+          <a href="#project-bamboo">竹签计数</a>
+          <a href="#project-blocks">手势搭积木</a>
+          <a href="#project-flow">行人光流估计</a>
+        </nav>
+      </div>
+
+      <div class="detail-list">
+        <article class="project-detail" id="project-rebar" aria-labelledby="rebar-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">国家级大学生创新创业训练计划</p>
+              <h2 id="rebar-title">工业钢筋实时计数</h2>
+              <p class="detail-lead">把钢筋端面检测部署到便携式 PDA，供仓储人员在现场核验钢筋数量。</p>
+              <ul class="tags" aria-label="技术栈"><li>PyTorch</li><li>YOLOv8</li><li>SCConv</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/rebar.webp" alt="并排的钢筋端面原图与带编号的检测结果" width="1200" height="675">
+              <figcaption><span>钢筋计数平台的原图与端面检测结果。</span><a href="https://www.bilibili.com/video/BV1ka4y1m7oi/">在 B 站看早期计数平台演示</a></figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>以 PyTorch 搭建模块化检测框架，用 GAN 生成钢筋端面图像补充训练数据。在 YOLOv8 中引入轻量高斯注意力和 SCConv，并调整损失函数，处理端面粘连与尺寸差异。</p>
+            </section>
+            <section>
+              <h3>结果</h3>
+              <dl class="detail-metrics">
+                <div><dt>计数准确率</dt><dd>90%</dd></div>
+                <div><dt>模型参数量</dt><dd>−30%</dd></div>
+                <div><dt>单帧推理</dt><dd>&lt;50 ms</dd></div>
+              </dl>
+              <p>项目用于某建筑公司的仓储管理，人工巡检效率提升 90%。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="project-detail" id="project-easyppt" aria-labelledby="easyppt-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">手势交互</p>
+              <h2 id="easyppt-title">EasyPPT</h2>
+              <p class="detail-lead">用手势控制幻灯片翻页和画面批注，演示时可以在摄像头前直接操作。</p>
+              <ul class="tags" aria-label="技术栈"><li>MediaPipe</li><li>OpenCV</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/easyppt-cover.jpg" alt="EasyPPT 幻灯片和带手部关键点的摄像头画面" width="1200" height="675" loading="lazy">
+              <figcaption>演示界面将幻灯片与手势识别画面并排显示。</figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>把 PowerPoint 文件转换为逐页图片，用 MediaPipe 跟踪摄像头画面中的手部关键点，通过 OpenCV 绘制交互反馈。识别到的手势可映射为上一页、下一页、连续翻页和批注等操作。</p>
+            </section>
+            <section>
+              <h3>结果</h3>
+              <p>项目于 2023 年 9 月入围百度飞桨全国大学生人工智能创意赛决赛。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="project-detail" id="project-digits" aria-labelledby="digits-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">实时识别</p>
+              <h2 id="digits-title">手写数字检测与识别</h2>
+              <p class="detail-lead">在实时画面中定位手写数字，将数字的位置和预测类别反馈到画面中。</p>
+              <ul class="tags" aria-label="技术栈"><li>YOLOv8</li><li>MNIST</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/digits.webp" alt="手写数字 8 的输入画面与类别预测" width="1200" height="675" loading="lazy">
+              <figcaption><span>输入画面与手写数字 8 的识别输出。</span><a href="https://www.bilibili.com/video/BV1mj411n7D6/">在 B 站看手写数字识别演示</a></figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>利用 MNIST 手写数字数据训练 YOLOv8 模型。接入实时画面后，对检测到的区域给出数字类别和置信度。</p>
+            </section>
+            <section>
+              <h3>演示</h3>
+              <p>示例展示了手写数字 8 从画面输入到模型预测的过程。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="project-detail" id="project-style-transfer" aria-labelledby="style-transfer-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">图像处理</p>
+              <h2 id="style-transfer-title">图像风格迁移</h2>
+              <p class="detail-lead">以两张图像作为输入，在保留内容图结构的同时，让输出呈现参考图的视觉风格。</p>
+              <ul class="tags" aria-label="技术栈"><li>VGG19</li><li>L-BFGS</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/style-transfer.webp" alt="内容图、风格参考与迁移结果的对照" width="1200" height="675" loading="lazy">
+              <figcaption>内容图、风格参考与生成图的对照。</figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>用 VGG19 提取多个层的图像特征，分别计算内容损失和风格损失，再用 L-BFGS 迭代优化生成图的像素。</p>
+            </section>
+            <section>
+              <h3>演示</h3>
+              <p>通过并列比较输入与输出，可以观察构图如何保留，以及参考图的纹理和色彩如何影响生成结果。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="project-detail" id="project-movenet" aria-labelledby="movenet-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">姿态估计</p>
+              <h2 id="movenet-title">MoveNet 姿态可视化</h2>
+              <p class="detail-lead">将人物动作转化为彩色火柴人动图，用于 LED 屏展示。</p>
+              <ul class="tags" aria-label="技术栈"><li>MoveNet</li><li>人体关键点</li><li>GIF</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/movenet.webp" alt="人体骨骼关键点示意和 LED 屏上的彩色火柴人" width="1200" height="675" loading="lazy">
+              <figcaption>人体关键点示意与 LED 屏上的火柴人效果。</figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>用 MoveNet 模型定位人体关键点，连接关键点绘制彩色骨架。将连续的姿态帧合成为 GIF，供 LED 屏播放。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="project-detail" id="project-bamboo" aria-labelledby="bamboo-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">目标检测</p>
+              <h2 id="bamboo-title">YOLOv8 竹签计数</h2>
+              <p class="detail-lead">从一张图像中数出竹签，同时在原图上标记检测到的位置，便于核对数量。</p>
+              <ul class="tags" aria-label="技术栈"><li>YOLOv8</li><li>目标计数</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/bamboo.webp" alt="竹签原始图像和叠加目标框的检测图像" width="1200" height="675" loading="lazy">
+              <figcaption><span>竹签端面原图与检测框对照。</span><a href="https://www.bilibili.com/video/BV1ZN411j76j/">在 B 站看竹签计数演示</a></figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>训练 YOLOv8 检测模型，让模型在输入图像中定位竹签。统计检测到的目标框数量，得到该图像的计数结果。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="project-detail" id="project-blocks" aria-labelledby="blocks-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">手势交互</p>
+              <h2 id="blocks-title">手势搭积木</h2>
+              <p class="detail-lead">通过摄像头捕捉手势，在屏幕上选取、拖动和改变积木颜色。</p>
+              <ul class="tags" aria-label="技术栈"><li>OpenCV</li><li>手部关键点</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/blocks.webp" alt="使用带关键点标记的手势拖动屏幕方块" width="1200" height="675" loading="lazy">
+              <figcaption>摄像头画面中的手部关键点与方块反馈。</figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>用 OpenCV 处理摄像头画面，将手部关键点的位置映射到屏幕方块的选取与拖动，以食指和中指的距离控制颜色。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="project-detail" id="project-flow" aria-labelledby="flow-title" tabindex="-1">
+          <div class="detail-hero">
+            <div class="detail-summary">
+              <p class="eyebrow">运动追踪</p>
+              <h2 id="flow-title">行人光流估计</h2>
+              <p class="detail-lead">将视频中被跟踪的特征点轨迹叠加到街景画面上，展示连续帧之间的运动。</p>
+              <ul class="tags" aria-label="技术栈"><li>OpenCV</li><li>Lucas–Kanade</li></ul>
+            </div>
+            <figure class="detail-figure">
+              <img src="assets/optical-flow.webp" alt="街景视频帧上叠加的多条彩色光流轨迹" width="1200" height="675" loading="lazy">
+              <figcaption>彩色轨迹叠加在连续街景画面上。</figcaption>
+            </figure>
+          </div>
+          <div class="detail-notes">
+            <section>
+              <h3>实现</h3>
+              <p>用 OpenCV 从首帧提取角点，通过 Lucas–Kanade 方法估计角点在后续帧的位置，并将相邻位置连成轨迹。</p>
+            </section>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner"><span>王佳鑫 <span class="identity-slash">/</span> WANG JIAXIN</span><a href="index.html#projects">返回项目列表</a></div>
+  </footer>
+</body>
+</html>

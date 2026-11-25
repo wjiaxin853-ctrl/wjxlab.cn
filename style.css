@@ -17,7 +17,7 @@ body { margin: 0; background: var(--page); color: var(--paper); line-height: 1.7
 h1, h2, h3, h4, p, figure { margin: 0; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
-a:focus-visible, summary:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 main [id], main { scroll-margin-top: calc(var(--header-height) + 24px); }
 
 .wrap { width: min(1324px, calc(100% - 2 * clamp(20px, 4vw, 64px))); margin-inline: auto; }
@@ -150,18 +150,28 @@ nav .assistant-nav, nav a:hover, nav a[aria-current], .footer a:hover { color: v
 .project, .background-panel { min-width: 0; border: 1px solid var(--edge); border-radius: 16px; background: var(--panel); overflow: hidden; }
 .project { transition: border-color .25s, background .25s; }
 .project:hover, .project:focus-within { border-color: #d2a9ff70; background: #201631ec; }
+.project-card-link { display: flex; flex-direction: column; height: 100%; }
+.project-card-link:focus-visible { outline-offset: -4px; }
 .project-image { overflow: hidden; background: #1f1630; }
 .project-image img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .45s; }
 .project:hover img { transform: scale(1.04); }
-.project-copy { padding: clamp(17px, 2.4vw, 27px); }
+.project-copy { display: flex; flex: 1; flex-direction: column; padding: clamp(17px, 2.4vw, 27px); }
 .project-copy .eyebrow { letter-spacing: .08em; }
 .project-copy h3 { margin: 7px 0 9px; }
 .project-copy > p:not(.eyebrow) { font-size: .96rem; }
 .project-facts { display: flex; flex-wrap: wrap; gap: 8px 19px; margin-top: 13px; color: var(--muted); font-size: .87rem; }
 .project-facts strong { color: var(--accent); font: 650 .94rem var(--mono); }
-details { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--edge); }
-summary { width: fit-content; color: var(--accent); cursor: pointer; font-size: .92rem; }
-details p { margin-top: 8px; font-size: .94rem; }
+.project-cta {
+  display: block;
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 16px;
+  color: var(--accent);
+  font-size: .91rem;
+  font-weight: 650;
+}
+.project-card-link:hover .project-cta,
+.project-card-link:focus-visible .project-cta { text-decoration: underline; text-underline-offset: .28em; }
 
 .background-panel { padding: clamp(20px, 3vw, 30px); }
 .background-panel h3 { margin-bottom: 18px; }

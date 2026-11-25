@@ -28,7 +28,7 @@
 | ![钢筋端面检测结果](assets/rebar.webp) | ![手势控制演示画面](assets/gesture.webp) | ![手写数字识别结果](assets/digits.webp) |
 | 用改进的 YOLOv8 检测钢筋端面，支持在 PDA 上实时计数。 | 通过手势控制演示与创作。 | 在实时画面中定位手写数字并显示识别结果。 |
 
-更多作品包括图像风格迁移、MoveNet 姿态可视化、YOLOv8 竹签计数、手势搭积木和行人光流估计。
+更多作品包括图像风格迁移、MoveNet 姿态可视化、YOLOv8 竹签计数、手势搭积木和行人光流估计。点击站内项目卡片可查看实现过程和演示画面。[浏览项目详情](https://106.52.107.206/project-details.html)
 
 ## 作品问答
 
@@ -61,6 +61,8 @@ python3 -B assistant/server.py
 | 文件 | 用途 |
 | --- | --- |
 | [`index.html`](index.html) | 简历、项目和研究内容 |
+| [`project-details.html`](project-details.html) | 项目详情、实现流程与演示截图 |
+| [`project-details.css`](project-details.css) | 项目详情页布局 |
 | [`style.css`](style.css) | 主题、响应式布局和打印样式 |
 | [`site.js`](site.js) | Canvas 粒子背景与交互 |
 | [`assistant.js`](assistant.js) | 作品问答的浏览器交互 |
@@ -69,4 +71,4 @@ python3 -B assistant/server.py
 | [`assets/`](assets/) | 网站图标与项目演示截图 |
 | [`docs/images/`](docs/images/) | README 使用的网页截图 |
 
-部署时，将 `index.html`、`style.css`、`site.js`、`assistant.js` 和 `assets/` 放到静态站点的发布根目录。问答后端单独从 `assistant/` 运行，Nginx 使用 `deploy/` 中的路由与限流配置。
+部署时，将 `index.html`、`project-details.html`、`style.css`、`project-details.css`、`site.js`、`assistant.js` 和 `assets/` 放到静态站点的发布根目录。问答后端单独从 `assistant/` 运行，Nginx 使用 `deploy/` 中的路由与限流配置。
