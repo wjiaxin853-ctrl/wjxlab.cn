@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0614">
+  <meta name="description" content="王佳鑫的个人简历与项目作品集，聚焦计算机视觉、文档智能与边缘部署。">
+  <title>王佳鑫 · AI 算法开发工程师</title>
+  <link rel="icon" href="assets/mark.png?v=2" type="image/png">
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="site.js?v=2" defer></script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">跳至正文</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="identity" href="#top" aria-label="王佳鑫，首页">
+        <img src="assets/mark.png?v=2" alt="" width="34" height="34">
+        <span>WJX<span class="identity-slash"> / </span>LAB</span>
+      </a>
+      <nav aria-label="页面导航">
+        <a href="#projects">作品</a>
+        <a href="#experience">经历</a>
+        <a href="#background">教育与研究</a>
+      </nav>
+    </div>
+  </header>
+
+  <canvas id="field" class="particle-field" aria-hidden="true"></canvas>
+
+  <main id="main">
+    <section class="wrap hero" aria-labelledby="hero-name">
+      <div class="intro">
+        <p class="eyebrow">AI 算法开发工程师</p>
+        <h1 id="hero-name">王佳鑫</h1>
+        <p class="hero-name-en" aria-hidden="true">Jiaxin Wang</p>
+        <p class="hero-desc">我做<em>计算机视觉</em>与<em>文档智能</em>，把检测、识别模型部署到巡检设备和数据安全产品中。</p>
+        <div class="actions">
+          <a class="button primary" href="#projects">查看项目</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <p class="eyebrow">SELECTED PROJECTS</p>
+        <h2 id="projects-title">项目作品</h2>
+      </div>
+      <div class="project-grid">
+        <article class="project featured">
+          <div class="project-image"><img src="assets/rebar.webp" alt="钢材计数平台对比原图和钢筋端面检测结果" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">国家级大学生创新创业训练计划</p>
+            <h3>工业钢筋实时计数</h3>
+            <p>用改进的 YOLOv8 检测钢筋端面，将模型部署到 PDA，支持仓储现场实时计数。</p>
+            <div class="project-facts"><span><strong>90%</strong> 计数准确率</span><span><strong>−30%</strong> 模型参数量</span></div>
+            <details>
+              <summary>查看技术细节</summary>
+              <p>搭建模块化 PyTorch 检测框架，用 GAN 生成端面图像补充数据，引入轻量高斯注意力和 SCConv，并改进损失函数处理端面粘连与尺寸差异。单帧推理低于 50 ms，仓储人工巡检效率提升 90%。</p>
+            </details>
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-image"><img src="assets/gesture.webp" alt="EasyPPT 演示用手部关键点控制幻灯片" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">手势交互</p>
+            <h3>EasyPPT</h3>
+            <p>用手势控制演示与创作的交互平台。</p>
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-image"><img src="assets/digits.webp" alt="手写数字 8 的原始画面与识别结果" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">实时识别</p>
+            <h3>手写数字检测与识别</h3>
+            <p>从实时画面中定位手写数字，并显示识别结果。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap section" id="experience" aria-labelledby="experience-title">
+      <div class="section-heading">
+        <p class="eyebrow">EXPERIENCE</p>
+        <h2 id="experience-title">工作与实习经历</h2>
+      </div>
+      <div class="metrics" aria-label="项目关键指标">
+        <div><strong>50<span> → </span>18<small> s</small></strong><span class="metric-caption">单文件 CPU 解析耗时</span></div>
+        <div><strong>92<small>%</small></strong><span class="metric-caption">光伏板故障检测 mAP50</span></div>
+        <div><strong>&lt;50<small> ms</small></strong><span class="metric-caption">钢筋计数单帧推理耗时</span></div>
+      </div>
+      <div class="timeline">
+        <article class="experience">
+          <div class="experience-meta"><time datetime="2025-07">2025.07</time><span>起 · 深圳</span></div>
+          <div>
+            <p class="company">深信服科技</p>
+            <h3>AI 算法开发工程师</h3>
+            <p>参与 DSP 数据安全产品迭代。将办公文档和图像解析为结构化数据，支持敏感数据识别与分类分级。</p>
+            <ul class="highlights">
+              <li>优化 PP-StructureV3 OCR 流程，增加图片识别流水线，将单文件 CPU 解析耗时从 50 秒缩短至 18 秒。</li>
+              <li>建设 MongoDB 数据管理与并行标注流程，敏感数据标注效率提升 150%。</li>
+              <li>用 Prometheus 和 Grafana 做业务监控，开发 MCP 工具和 Agent 工作流，参与 OCR 与多模态模型评测。</li>
+            </ul>
+            <ul class="tags" aria-label="技术栈"><li>OCR</li><li>MongoDB</li><li>Prometheus</li><li>MCP</li></ul>
+          </div>
+        </article>
+        <article class="experience">
+          <div class="experience-meta"><time datetime="2024-12">2024.12</time><span>—</span><time datetime="2025-03">2025.03</time><span> · 北京</span></div>
+          <div>
+            <p class="company">中国广核集团</p>
+            <h3>CV 算法工程师 · 实习</h3>
+            <p>负责智能巡检中的视觉算法开发，从数据处理和模型调优做到无人机、巡检机器人端部署。</p>
+            <ul class="highlights">
+              <li>训练 YOLOv11 光伏板故障分割模型，mAP50 达 92%，热斑漏检率低于 5%，无人机端推理达到 25 FPS 以上。</li>
+              <li>构建 6,800 张施工姿态数据集，评估模型 mAPpose 达 78%。</li>
+              <li>结合关键点检测、透视矫正与 PaddleOCR 读取表盘，准确率达 81.2%，单次耗时 62 ms。</li>
+            </ul>
+            <ul class="tags" aria-label="技术栈"><li>YOLOv11</li><li>姿态估计</li><li>PaddleOCR</li><li>边缘部署</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap section" id="background" aria-labelledby="background-title">
+      <div class="section-heading">
+        <p class="eyebrow">EDUCATION &amp; RESEARCH</p>
+        <h2 id="background-title">教育与研究</h2>
+      </div>
+      <div class="background-grid">
+        <div class="background-panel">
+          <h3>教育经历</h3>
+          <div class="record">
+            <p class="date">2025.09 入学</p>
+            <h4>北京交通大学</h4>
+            <p>人工智能 · 硕士</p>
+          </div>
+          <div class="record">
+            <p class="date">2021.09 — 2025.06</p>
+            <h4>天津科技大学</h4>
+            <p>人工智能 · 本科 · GPA 4.0 / 5.0 · 专业前 5%</p>
+            <p>国家励志奖学金、校一等奖学金</p>
+          </div>
+        </div>
+        <div class="background-panel">
+          <h3>论文</h3>
+          <ul class="research">
+            <li><span lang="en">Supply Chain Network Security Investment Strategies Based on Nonlinear Budget Constraints: The Moderating Roles of Market Share and Attack Risk</span><small>第二作者 · arXiv</small></li>
+            <li>基于两阶段缺失模态恢复的多模态情感分析方法<small>第三作者 · 期刊论文</small></li>
+            <li>基于改进 YOLOv8 的钢筋计数检测系统<small>校优秀毕业论文</small></li>
+          </ul>
+        </div>
+      </div>
+      <div class="toolbox">
+        <h3>技术栈</h3>
+        <ul class="tags" aria-label="技术栈">
+          <li>Python</li><li>Go</li><li>PyTorch</li><li>TensorFlow</li><li>PaddlePaddle</li><li>Transformer</li><li>Linux</li><li>Git</li><li>Docker</li><li>Kubernetes</li><li>TensorRT</li><li>Ollama</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner"><span>王佳鑫 <span class="identity-slash">/</span> WANG JIAXIN</span><a href="#top">返回顶部</a></div>
+  </footer>
+</body>
+</html>
