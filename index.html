@@ -7,8 +7,9 @@
   <meta name="description" content="王佳鑫的个人简历与项目作品集，聚焦计算机视觉、文档智能与边缘部署。">
   <title>王佳鑫 · AI 算法开发工程师</title>
   <link rel="icon" href="assets/mark.png?v=2" type="image/png">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
   <script src="site.js?v=2" defer></script>
+  <script src="assistant.js?v=1" defer></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">跳至正文</a>
@@ -22,6 +23,7 @@
         <a href="#projects">作品</a>
         <a href="#experience">经历</a>
         <a href="#background">教育与研究</a>
+        <a class="assistant-nav" href="#assistant">问答</a>
       </nav>
     </div>
   </header>
@@ -47,7 +49,7 @@
         <h2 id="projects-title">项目作品</h2>
       </div>
       <div class="project-grid">
-        <article class="project featured">
+        <article class="project featured" id="project-rebar">
           <div class="project-image"><img src="assets/rebar.webp" alt="钢材计数平台对比原图和钢筋端面检测结果" loading="lazy" width="1200" height="675"></div>
           <div class="project-copy">
             <p class="eyebrow">国家级大学生创新创业训练计划</p>
@@ -60,20 +62,60 @@
             </details>
           </div>
         </article>
-        <article class="project">
+        <article class="project" id="project-easyppt">
           <div class="project-image"><img src="assets/gesture.webp" alt="EasyPPT 演示用手部关键点控制幻灯片" loading="lazy" width="1200" height="675"></div>
           <div class="project-copy">
             <p class="eyebrow">手势交互</p>
             <h3>EasyPPT</h3>
-            <p>用手势控制演示与创作的交互平台。</p>
+            <p>用 MediaPipe 跟踪手部关键点，用 OpenCV 提供画面反馈，支持手势翻页、连续翻页和批注。项目于 2023 年入围百度飞桨全国大学生人工智能创意赛决赛。</p>
           </div>
         </article>
-        <article class="project">
+        <article class="project" id="project-digits">
           <div class="project-image"><img src="assets/digits.webp" alt="手写数字 8 的原始画面与识别结果" loading="lazy" width="1200" height="675"></div>
           <div class="project-copy">
             <p class="eyebrow">实时识别</p>
             <h3>手写数字检测与识别</h3>
-            <p>从实时画面中定位手写数字，并显示识别结果。</p>
+            <p>结合 YOLOv8 与 MNIST，从实时画面中定位手写数字并显示识别结果。</p>
+          </div>
+        </article>
+        <article class="project" id="project-style-transfer">
+          <div class="project-image"><img src="assets/style-transfer.webp" alt="内容图、风格参考与生成结果" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">图像处理</p>
+            <h3>图像风格迁移</h3>
+            <p>用 VGG19 提取内容与风格特征，通过 L-BFGS 优化图像像素。</p>
+          </div>
+        </article>
+        <article class="project" id="project-movenet">
+          <div class="project-image"><img src="assets/movenet.webp" alt="人体关键点示意图和 LED 屏火柴人画面" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">姿态估计</p>
+            <h3>MoveNet 姿态可视化</h3>
+            <p>将人体关键点绘制为彩色火柴人，生成可在 LED 屏上展示的 GIF。</p>
+          </div>
+        </article>
+        <article class="project" id="project-bamboo">
+          <div class="project-image"><img src="assets/bamboo.webp" alt="竹签原图和目标检测框对照" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">目标检测</p>
+            <h3>YOLOv8 竹签计数</h3>
+            <p>训练模型定位图像中的竹签，并统计检测数量。</p>
+          </div>
+        </article>
+        <article class="project" id="project-blocks">
+          <div class="project-image"><img src="assets/blocks.webp" alt="摄像头识别手部关键点并拖动屏幕方块" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">手势交互</p>
+            <h3>手势搭积木</h3>
+            <p>用 OpenCV 处理摄像头画面，通过手部关键点选取、拖动屏幕方块，并以指间距离控制颜色。</p>
+          </div>
+        </article>
+        <article class="project" id="project-flow">
+          <div class="project-image"><img src="assets/optical-flow.webp" alt="人行区域的光流轨迹叠加效果" loading="lazy" width="1200" height="675"></div>
+          <div class="project-copy">
+            <p class="eyebrow">运动追踪</p>
+            <h3>行人光流估计</h3>
+            <p>用 OpenCV 提取首帧角点，通过 Lucas–Kanade 算法追踪并叠加运动轨迹。</p>
           </div>
         </article>
       </div>
@@ -90,7 +132,7 @@
         <div><strong>&lt;50<small> ms</small></strong><span class="metric-caption">钢筋计数单帧推理耗时</span></div>
       </div>
       <div class="timeline">
-        <article class="experience">
+        <article class="experience" id="sangfor">
           <div class="experience-meta"><time datetime="2025-07">2025.07</time><span>起 · 深圳</span></div>
           <div>
             <p class="company">深信服科技</p>
@@ -104,7 +146,7 @@
             <ul class="tags" aria-label="技术栈"><li>OCR</li><li>MongoDB</li><li>Prometheus</li><li>MCP</li></ul>
           </div>
         </article>
-        <article class="experience">
+        <article class="experience" id="cgn">
           <div class="experience-meta"><time datetime="2024-12">2024.12</time><span>—</span><time datetime="2025-03">2025.03</time><span> · 北京</span></div>
           <div>
             <p class="company">中国广核集团</p>
@@ -118,6 +160,14 @@
             <ul class="tags" aria-label="技术栈"><li>YOLOv11</li><li>姿态估计</li><li>PaddleOCR</li><li>边缘部署</li></ul>
           </div>
         </article>
+        <article class="experience" id="blue-ocean">
+          <div class="experience-meta"><time datetime="2023-10">2023.10</time><span>—</span><time datetime="2023-12">2023.12</time><span> · 天津</span></div>
+          <div>
+            <p class="company">中科蓝海（天津）测试股份有限公司</p>
+            <h3>宣传部 · 实习</h3>
+            <p>参与数据可视化、数据分析报告和编程科普活动设计。</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -127,7 +177,7 @@
         <h2 id="background-title">教育与研究</h2>
       </div>
       <div class="background-grid">
-        <div class="background-panel">
+        <div class="background-panel" id="education">
           <h3>教育经历</h3>
           <div class="record">
             <p class="date">2025.09 入学</p>
@@ -141,7 +191,7 @@
             <p>国家励志奖学金、校一等奖学金</p>
           </div>
         </div>
-        <div class="background-panel">
+        <div class="background-panel" id="research">
           <h3>论文</h3>
           <ul class="research">
             <li><span lang="en">Supply Chain Network Security Investment Strategies Based on Nonlinear Budget Constraints: The Moderating Roles of Market Share and Attack Risk</span><small>第二作者 · arXiv</small></li>
@@ -149,12 +199,60 @@
             <li>基于改进 YOLOv8 的钢筋计数检测系统<small>校优秀毕业论文</small></li>
           </ul>
         </div>
+        <div class="background-panel campus" id="campus">
+          <h3>校园经历与荣誉</h3>
+          <ul class="research">
+            <li>曾任学院科协主席和华为云工作室负责人。<small>截至 2023 年 11 月策划组织 14 场活动，累计 1,241 人次</small></li>
+            <li>2023 年“互联网+”大学生创新创业大赛红旅赛道国赛铜奖<small>项目第二负责人</small></li>
+            <li>2023 年全国大学生电子设计竞赛天津赛区二等奖</li>
+          </ul>
+        </div>
       </div>
-      <div class="toolbox">
+      <div class="toolbox" id="skills">
         <h3>技术栈</h3>
         <ul class="tags" aria-label="技术栈">
           <li>Python</li><li>Go</li><li>PyTorch</li><li>TensorFlow</li><li>PaddlePaddle</li><li>Transformer</li><li>Linux</li><li>Git</li><li>Docker</li><li>Kubernetes</li><li>TensorRT</li><li>Ollama</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="wrap section" id="assistant" aria-labelledby="assistant-title">
+      <div class="section-heading">
+        <p class="eyebrow">AI ASSISTANT</p>
+        <h2 id="assistant-title">作品问答</h2>
+      </div>
+      <div class="assistant-panel">
+        <div class="assistant-intro">
+          <p>了解项目成果、工作经历或教育研究。回答根据本站公开资料生成，并附上可查看的来源。</p>
+          <h3>试着问</h3>
+          <ul class="assistant-examples">
+            <li><button type="button" disabled>钢筋实时计数用到了哪些技术？</button></li>
+            <li><button type="button" disabled>OCR 解析性能优化了多少？</button></li>
+            <li><button type="button" disabled>王佳鑫有哪些研究方向？</button></li>
+          </ul>
+        </div>
+        <div class="assistant-workspace">
+          <form class="assistant-form" action="/api/ask" method="post" novalidate>
+            <label for="assistant-question">你的问题</label>
+            <div class="assistant-input">
+              <input id="assistant-question" name="question" type="text" disabled required minlength="2" maxlength="160" placeholder="例如，巡检项目用到了哪些视觉算法？" aria-describedby="assistant-limit">
+              <button type="submit" disabled>提问</button>
+            </div>
+            <p id="assistant-limit">每次输入 2–160 个字符</p>
+          </form>
+          <noscript><p class="assistant-status">请启用 JavaScript 后使用问答。</p></noscript>
+          <div class="assistant-response" aria-live="polite" aria-atomic="true">
+            <p class="assistant-status">输入问题或选择一个示例。</p>
+            <div class="assistant-result" hidden>
+              <h3>回答</h3>
+              <p class="assistant-answer"></p>
+              <div class="assistant-sources" hidden>
+                <h4>来源</h4>
+                <ul></ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
